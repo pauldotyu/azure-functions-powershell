@@ -9,12 +9,6 @@ $fw = $Request.Body.firewallName
 $vn = $Request.Body.vnetName
 $ip = $Request.Body.publicIpName
 
-Write-Host "Retrieving access token using System Assigned Managed Identity"
-$token=Get-AzAccessToken
-
-Write-Host "Logging into Azure using System Assigned Managed Identity's access token"
-Connect-AzAccount -AccessToken $token.Token -AccountId funcnetops1
-
 Write-Host "Retrieving Azure Firewall resources"
 $firewall=Get-AzFirewall -ResourceGroupName $rg -Name $fw
 $vnet = Get-AzVirtualNetwork -ResourceGroupName $rg -Name $vn
